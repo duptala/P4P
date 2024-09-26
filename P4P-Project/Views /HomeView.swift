@@ -74,7 +74,7 @@ struct HomeView: View {
         }
         .sheet(item: $selectedAsset) { asset in
             // When an asset is selected after scanning, navigate to the AssetDetailView
-            AssetDetailView(asset: asset, name: name, upi: upi)
+            AssetDetailView(asset: asset, name: name, upi: upi, updateAsset: updateAsset)
         }
         .onAppear {
             // Fetch all assets when the view appears
@@ -88,6 +88,13 @@ struct HomeView: View {
                 // Reset isPresentingScanner to false so the scanner can be triggered again
                 isPresentingScanner = false
             }
+        }
+    }
+    
+    // Function to update the specific asset in the assets array
+    func updateAsset(_ updatedAsset: Asset) {
+        if let index = assets.firstIndex(where: { $0.id == updatedAsset.id }) {
+            assets[index] = updatedAsset // Update the specific asset in the array
         }
     }
     

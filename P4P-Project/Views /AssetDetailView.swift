@@ -12,8 +12,11 @@ struct AssetDetailView: View {
     let asset: Asset
     var name: String // Current user's name
     var upi: String // Current user's UPI
+    var updateAsset: (Asset) -> Void // Function to update specific asset in HomeView
     @State private var isMoving = false // Tracks if the item is being moved
-    
+    @State private var showAlert = false // State to show alert
+    @State private var alertMessage = "" // Message for the alert
+
     var body: some View {
         VStack {
             // Display asset image
@@ -31,7 +34,7 @@ struct AssetDetailView: View {
                 .fontWeight(.bold)
             Text("Location: \(asset.level), \(asset.room)")
             Text("Last updated by: \(asset.lastUpdatedByName) / \(asset.lastUpdatedByUPI)")
-            Text("Last updated at: \(asset.lastUpdatedAt)")
+            Text("Last updated at: \(formattedDate(asset.lastUpdatedAt))")
             
             if isMoving {
                 // If moving, only show "Finish Moving" button
@@ -54,15 +57,22 @@ struct AssetDetailView: View {
             }
         }
         .padding()
+        // Display an alert if the operation is successful or fails
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Operation Status"),
+                message: Text(alertMessage),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
-    
+
     // Start moving: disable other functionality, show "Finish Moving"
     func startMoving() {
         isMoving = true
-        // Lock other functionalities if needed
     }
     
-    // Finish moving: update asset in the database
+    // Finish moving: update asset in the database, refresh, and show alert
     func finishMoving() {
         // Example: Update the asset’s new room (using BLE)
         let newRoom = detectNewRoom() // Replace with BLE detection logic
@@ -71,21 +81,47 @@ struct AssetDetailView: View {
         let db = Firestore.firestore()
         db.collection("assets").document(asset.id).updateData([
             "room": newRoom,
-            "lastUpdatedAt": Date().description,
+            "lastUpdatedAt": Date(),
             "lastUpdatedByName": name,
             "lastUpdatedByUPI": upi
         ]) { error in
             if let error = error {
-                print("Error updating asset: \(error)")
+                // Show failure alert
+                alertMessage = "Failed to update asset: \(error.localizedDescription)"
             } else {
-                print("Asset successfully updated")
-                isMoving = false
+                // Create updated asset
+                let updatedAsset = Asset(
+                    id: asset.id,
+                    name: asset.name,
+                    code: asset.code,
+                    level: asset.level,
+                    room: newRoom, // Update room
+                    lastUpdatedAt: Date(), // Update time
+                    lastUpdatedByName: name,
+                    lastUpdatedByUPI: upi,
+                    imageUrl: asset.imageUrl
+                )
+                // Call updateAsset to update the specific asset in HomeView
+                updateAsset(updatedAsset)
+                
+                // Show success alert
+                alertMessage = "Asset successfully updated!"
             }
+            showAlert = true // Show the alert after the operation
+            isMoving = false // Reset the moving state
         }
     }
-    
+
     // Dummy BLE detection function for room change
     func detectNewRoom() -> String {
         return "New Room Detected via BLE"
+    }
+
+    // Function to format the date
+    func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
     }
 }
