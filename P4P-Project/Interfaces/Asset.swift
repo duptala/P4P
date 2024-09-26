@@ -13,7 +13,7 @@ struct Asset: Identifiable {
     let code: String // QR Code value for scanning
     let level: String
     let room: String
-    let lastUpdatedAt: String
+    let lastUpdatedAt: Date
     let lastUpdatedByName: String
     let lastUpdatedByUPI: String
     let imageUrl: String
