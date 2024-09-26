@@ -52,8 +52,8 @@ struct HomeView: View {
             // Room detected with blinking effect
             Text("Room detected: TODO:REPL")
                 .font(.caption)
-                .foregroundColor(isBlinking ? .gray : .black) // Blink effect
-                .animation(.linear(duration: 0.5).repeatForever(), value: isBlinking) // Blinking animation
+                .foregroundColor(isBlinking ? .gray : .blue) // Blink effect
+                .animation(.easeInOut(duration: 0.8).repeatForever(), value: isBlinking) // Blinking animation
             
             Spacer()
             
