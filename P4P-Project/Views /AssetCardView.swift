@@ -43,11 +43,11 @@ struct AssetCardView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
 
-                // Last updated with different background and padding
-                Text("Last updated: \(asset.lastUpdatedAt)")
-                    .font(.caption) // Small text
+                // Format the lastUpdatedAt date into a readable string
+                Text("Last updated: \(formattedDate(asset.lastUpdatedAt))")
+                    .font(.caption)
                     .padding(5)
-                    .background(Color.yellow.opacity(0.3)) // Soft yellow background
+                    .background(Color.yellow.opacity(0.3))
                     .cornerRadius(5)
                     .foregroundColor(.gray)
 
@@ -64,4 +64,12 @@ struct AssetCardView: View {
         .padding(.horizontal)
         .padding(.vertical, 8) // More padding around the card
     }
+    
+    // Function to format the date properly
+   func formattedDate(_ date: Date) -> String {
+       let formatter = DateFormatter()
+       formatter.dateStyle = .medium
+       formatter.timeStyle = .short
+       return formatter.string(from: date)
+   }
 }
