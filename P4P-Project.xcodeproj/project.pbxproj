@@ -55,6 +55,7 @@
 		FA11736F2CA57EFC00F6B3D5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FA1173722CA57F2000F6B3D5 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		FA1173742CA57F4000F6B3D5 /* AssetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCardView.swift; sourceTree = "<group>"; };
+		FA1173762CA5988100F6B3D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +107,7 @@
 		FA11733F2CA56F7A00F6B3D5 /* P4P-Project */ = {
 			isa = PBXGroup;
 			children = (
+				FA1173762CA5988100F6B3D5 /* Info.plist */,
 				FA1173712CA57F1500F6B3D5 /* Interfaces */,
 				FA11736A2CA57BF400F6B3D5 /* Views  */,
 				FA1173402CA56F7A00F6B3D5 /* P4P_ProjectApp.swift */,
@@ -469,6 +471,7 @@
 				DEVELOPMENT_TEAM = EB5H4E54Q2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "P4P-Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -499,6 +502,7 @@
 				DEVELOPMENT_TEAM = EB5H4E54Q2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "P4P-Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
