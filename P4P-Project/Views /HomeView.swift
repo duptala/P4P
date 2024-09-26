@@ -87,6 +87,9 @@ struct HomeView: View {
                 
                 // Reset isPresentingScanner to false so the scanner can be triggered again
                 isPresentingScanner = false
+                
+                // Reset the scanned code to allow for future scans
+                scannedCode = "" // This line is important for resetting the scanned state
             }
         }
     }
@@ -156,5 +159,3 @@ struct HomeView: View {
         }
     }
 }
-
-
