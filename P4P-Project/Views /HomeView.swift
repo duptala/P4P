@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CodeScanner
+import FirebaseFirestore
 
 struct HomeView: View {
     var name: String // Receiving the name
@@ -14,14 +15,12 @@ struct HomeView: View {
     @State private var searchText = ""
     @State private var isPresentingScanner = false // State to show the QR scanner
     @State private var scannedCode = "" // State to store the scanned QR code
-
-    // Dummy data with asset names, rooms, levels, and last updated time
-    let assets = [
-        Asset(name: "Air Compressor", level: "Level 7", room: "Room 405-712", lastUpdated: "Just now", imageName: "wrench.fill"),
-        Asset(name: "Drill Machine", level: "Level 5", room: "Room 205-302", lastUpdated: "5 mins ago", imageName: "hammer.fill"),
-        Asset(name: "Laser Cutter", level: "Level 9", room: "Room 903-122", lastUpdated: "10 mins ago", imageName: "scissors")
-    ]
+    @State private var assets: [Asset] = [] // Array to store retrieved assets
+        
+    // Firestore instance
+    let db = Firestore.firestore()
     
+    // Filtered list of assets based on search text
     var filteredAssets: [Asset] {
         if searchText.isEmpty {
             return assets
@@ -42,7 +41,7 @@ struct HomeView: View {
             // Scrollable list of cards
             ScrollView {
                 ForEach(filteredAssets) { asset in
-                    AssetCardView(asset: asset, editorName: name, editorUPI: upi)
+                    AssetCardView(asset: asset)
                 }
             }
             
@@ -79,15 +78,37 @@ struct HomeView: View {
         }
         .onChange(of: scannedCode) { newCode in
             if !newCode.isEmpty {
-                print("Scanned QR Code: \(newCode)")
-                // Handle the scanned QR code here (e.g., search asset by code)
+                // Fetch the asset from Firestore after scanning the QR code
+                fetchAssetByQRCode(qrCode: newCode)
+            }
+        }
+    }
+    
+    // Function to fetch an asset by QR code from Firestore
+    func fetchAssetByQRCode(qrCode: String) {
+        let db = Firestore.firestore()
+        db.collection("assets").whereField("code", isEqualTo: qrCode).getDocuments { snapshot, error in
+            if let error = error {
+                print("Error fetching asset: \(error)")
+            } else if let document = snapshot?.documents.first {
+                let data = document.data()
+                let asset = Asset(
+                    id: document.documentID,
+                    name: data["name"] as? String ?? "",
+                    code: data["code"] as? String ?? "",
+                    level: data["level"] as? String ?? "",
+                    room: data["room"] as? String ?? "",
+                    lastUpdatedAt: data["lastUpdatedAt"] as? String ?? "",
+                    lastUpdatedByName: data["lastUpdatedByName"] as? String ?? "",
+                    lastUpdatedByUPI: data["lastUpdatedByName"] as? String ?? "",
+                    imageUrl: data["imageUrl"] as? String ?? ""
+                )
+                // Add the retrieved asset to the list
+                self.assets.append(asset)
             }
         }
     }
 }
-
-
-
 
 
 

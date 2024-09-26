@@ -7,22 +7,25 @@
 
 import Foundation
 import SwiftUI
-import SwiftUI
 
 // Component for each card
 struct AssetCardView: View {
     let asset: Asset
-    let editorName: String // New field for editor's name
-    let editorUPI: String  // New field for editor's UPI
 
     var body: some View {
         HStack {
-            // Image on the left side
-            Image(systemName: asset.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50)
-                .padding()
+            // AsyncImage to load the image from the URL
+            AsyncImage(url: URL(string: asset.imageUrl)) { image in
+                image.resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 50)
+                    .padding()
+            } placeholder: {
+                // Placeholder while loading image
+                ProgressView()
+                    .frame(width: 50, height: 50)
+                    .padding()
+            }
 
             VStack(alignment: .leading, spacing: 10) {
                 // Asset name (large)
@@ -41,15 +44,15 @@ struct AssetCardView: View {
                     .foregroundColor(.secondary)
 
                 // Last updated with different background and padding
-                Text("Last updated: \(asset.lastUpdated)")
+                Text("Last updated: \(asset.lastUpdatedAt)")
                     .font(.caption) // Small text
                     .padding(5)
                     .background(Color.yellow.opacity(0.3)) // Soft yellow background
                     .cornerRadius(5)
                     .foregroundColor(.gray)
 
-                // New "Last edited by" field with editor name and UPI
-                Text("Last edited by: \(editorName) / \(editorUPI)")
+                // "Last edited by" field with editor name and UPI
+                Text("Last edited by: \(asset.lastUpdatedByName) / \(asset.lastUpdatedByUPI)")
                     .font(.caption) // Small text
                     .foregroundColor(.gray) // Gray text for less emphasis
             }
@@ -62,4 +65,3 @@ struct AssetCardView: View {
         .padding(.vertical, 8) // More padding around the card
     }
 }
-
