@@ -17,6 +17,9 @@ struct HomeView: View {
     @State private var scannedCode = "" // State to store the scanned QR code
     @State private var assets: [Asset] = [] // Array to store retrieved assets
     @State private var selectedAsset: Asset? // Stores the asset selected after scanning
+    
+    // State variable to control the color of the room detection text
+    @State private var isBlinking = false
         
     // Firestore instance
     let db = Firestore.firestore()
@@ -45,6 +48,14 @@ struct HomeView: View {
                     AssetCardView(asset: asset)
                 }
             }
+            
+            // Room detected with blinking effect
+            Text("Room detected: TODO:REPL")
+                .font(.caption)
+                .foregroundColor(isBlinking ? .gray : .black) // Blink effect
+                .animation(.linear(duration: 0.5).repeatForever(), value: isBlinking) // Blinking animation
+            
+            Spacer()
             
             // User details
             Text("Logged in as: \(name) | \(upi)")
@@ -79,6 +90,9 @@ struct HomeView: View {
         .onAppear {
             // Fetch all assets when the view appears
             fetchAllAssets()
+            
+            // Start the blinking animation on appear
+            startBlinking()
         }
         .onChange(of: scannedCode) { newCode in
             if !newCode.isEmpty {
@@ -93,6 +107,14 @@ struct HomeView: View {
             }
         }
     }
+    
+    // Function to control the blinking effect
+        func startBlinking() {
+            // A timer that will repeat the blinking effect
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                isBlinking.toggle()
+            }
+        }
     
     // Function to update the specific asset in the assets array
     func updateAsset(_ updatedAsset: Asset) {
