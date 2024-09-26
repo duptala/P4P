@@ -5,14 +5,16 @@
 //  Created by Devesh Duptala on 26/09/2024.
 //
 
-import Foundation
 import SwiftUI
+import CodeScanner
 
 struct HomeView: View {
     var name: String // Receiving the name
     var upi: String // Receiving the upi
     @State private var searchText = ""
-    
+    @State private var isPresentingScanner = false // State to show the QR scanner
+    @State private var scannedCode = "" // State to store the scanned QR code
+
     // Dummy data with asset names, rooms, levels, and last updated time
     let assets = [
         Asset(name: "Air Compressor", level: "Level 7", room: "Room 405-712", lastUpdated: "Just now", imageName: "wrench.fill"),
@@ -60,8 +62,8 @@ struct HomeView: View {
             // Bottom navbar with scan button
             HStack {
                 Button("Scan") {
-                    // Action for scan button
-                    print("Scan pressed")
+                    // Show QR Scanner when the button is pressed
+                    isPresentingScanner = true
                 }
                 .padding()
                 .background(Color.blue)
@@ -71,12 +73,21 @@ struct HomeView: View {
             .padding(.bottom)
         }
         .navigationTitle("Asset Tracker")
+        .sheet(isPresented: $isPresentingScanner) {
+            // QR Scanner View
+            QRScannerView(isPresentingScanner: $isPresentingScanner, scannedCode: $scannedCode)
+        }
+        .onChange(of: scannedCode) { newCode in
+            if !newCode.isEmpty {
+                print("Scanned QR Code: \(newCode)")
+                // Handle the scanned QR code here (e.g., search asset by code)
+            }
+        }
     }
 }
 
-#Preview {
-    HomeView(name: "Test", upi: "ykim583")
-}
+
+
 
 
 

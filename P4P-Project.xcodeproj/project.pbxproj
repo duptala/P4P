@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F6826792CA57F850093360B /* qr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6826782CA57F850093360B /* qr.swift */; };
+		3F68267C2CA580650093360B /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 3F68267B2CA580650093360B /* CodeScanner */; };
 		FA1173412CA56F7A00F6B3D5 /* P4P_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1173402CA56F7A00F6B3D5 /* P4P_ProjectApp.swift */; };
 		FA1173432CA56F7A00F6B3D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1173422CA56F7A00F6B3D5 /* ContentView.swift */; };
 		FA1173452CA56F7B00F6B3D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA1173442CA56F7B00F6B3D5 /* Assets.xcassets */; };
@@ -38,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F6826782CA57F850093360B /* qr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = qr.swift; sourceTree = "<group>"; };
 		FA11733D2CA56F7A00F6B3D5 /* P4P-Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "P4P-Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1173402CA56F7A00F6B3D5 /* P4P_ProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P4P_ProjectApp.swift; sourceTree = "<group>"; };
 		FA1173422CA56F7A00F6B3D5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		FA11736F2CA57EFC00F6B3D5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FA1173722CA57F2000F6B3D5 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		FA1173742CA57F4000F6B3D5 /* AssetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetCardView.swift; sourceTree = "<group>"; };
+		FA1173762CA5988100F6B3D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F68267C2CA580650093360B /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +107,7 @@
 		FA11733F2CA56F7A00F6B3D5 /* P4P-Project */ = {
 			isa = PBXGroup;
 			children = (
+				FA1173762CA5988100F6B3D5 /* Info.plist */,
 				FA1173712CA57F1500F6B3D5 /* Interfaces */,
 				FA11736A2CA57BF400F6B3D5 /* Views  */,
 				FA1173402CA56F7A00F6B3D5 /* P4P_ProjectApp.swift */,
@@ -140,6 +146,7 @@
 		FA11736A2CA57BF400F6B3D5 /* Views  */ = {
 			isa = PBXGroup;
 			children = (
+				3F6826782CA57F850093360B /* qr.swift */,
 				FA11736B2CA57C0200F6B3D5 /* LoginView.swift */,
 				FA11736F2CA57EFC00F6B3D5 /* HomeView.swift */,
 				FA1173742CA57F4000F6B3D5 /* AssetCardView.swift */,
@@ -171,6 +178,9 @@
 			dependencies = (
 			);
 			name = "P4P-Project";
+			packageProductDependencies = (
+				3F68267B2CA580650093360B /* CodeScanner */,
+			);
 			productName = "P4P-Project";
 			productReference = FA11733D2CA56F7A00F6B3D5 /* P4P-Project.app */;
 			productType = "com.apple.product-type.application";
@@ -243,6 +253,9 @@
 				Base,
 			);
 			mainGroup = FA1173342CA56F7A00F6B3D5;
+			packageReferences = (
+				3F68267A2CA580650093360B /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = FA11733E2CA56F7A00F6B3D5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -288,6 +301,7 @@
 				FA1173732CA57F2000F6B3D5 /* Asset.swift in Sources */,
 				FA11736C2CA57C0200F6B3D5 /* LoginView.swift in Sources */,
 				FA1173432CA56F7A00F6B3D5 /* ContentView.swift in Sources */,
+				3F6826792CA57F850093360B /* qr.swift in Sources */,
 				FA1173412CA56F7A00F6B3D5 /* P4P_ProjectApp.swift in Sources */,
 				FA1173702CA57EFC00F6B3D5 /* HomeView.swift in Sources */,
 				FA1173752CA57F4000F6B3D5 /* AssetCardView.swift in Sources */,
@@ -457,6 +471,7 @@
 				DEVELOPMENT_TEAM = EB5H4E54Q2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "P4P-Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -487,6 +502,7 @@
 				DEVELOPMENT_TEAM = EB5H4E54Q2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "P4P-Project/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -622,6 +638,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F68267A2CA580650093360B /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F68267B2CA580650093360B /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F68267A2CA580650093360B /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA1173352CA56F7A00F6B3D5 /* Project object */;
 }

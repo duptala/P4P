@@ -63,10 +63,3 @@ struct AssetCardView: View {
     }
 }
 
-#Preview {
-    AssetCardView(
-        asset: Asset(name: "Air Compressor", level: "Level 7", room: "Room 405-712", lastUpdated: "Just now", imageName: "wrench.fill"),
-        editorName: "Min",
-        editorUPI: "ykim583"
-    )
-}
