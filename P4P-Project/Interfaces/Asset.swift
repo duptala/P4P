@@ -8,11 +8,14 @@ import SwiftUI
 
 // Model for Asset data
 struct Asset: Identifiable {
-    let id = UUID()
+    let id: String // Firestore document ID
     let name: String
+    let code: String // QR Code value for scanning
     let level: String
     let room: String
-    let lastUpdated: String
-    let imageName: String // Name of the image to show on the card
+    let lastUpdatedAt: String
+    let lastUpdatedByName: String
+    let lastUpdatedByUPI: String
+    let imageUrl: String
 }
 
