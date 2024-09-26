@@ -18,6 +18,8 @@ struct HomeView: View {
     @State private var assets: [Asset] = [] // Array to store retrieved assets
     @State private var selectedAsset: Asset? // Stores the asset selected after scanning
     
+    @StateObject private var bleManager = BLEManager() // Initialize BLEManager
+    
     // State variable to control the color of the room detection text
     @State private var isBlinking = false
         
@@ -50,7 +52,7 @@ struct HomeView: View {
             }
             
             // Room detected with blinking effect
-            Text("Room detected: TODO:REPL")
+            Text("Room detected: \(bleManager.detectedRoom)")
                 .font(.caption)
                 .foregroundColor(isBlinking ? .gray : .blue) // Blink effect
                 .animation(.easeInOut(duration: 0.8).repeatForever(), value: isBlinking) // Blinking animation
@@ -85,7 +87,7 @@ struct HomeView: View {
         }
         .sheet(item: $selectedAsset) { asset in
             // When an asset is selected after scanning, navigate to the AssetDetailView
-            AssetDetailView(asset: asset, name: name, upi: upi, updateAsset: updateAsset)
+            AssetDetailView(asset: asset, name: name, upi: upi, detectedRoom: bleManager.detectedRoom, updateAsset: updateAsset)
         }
         .onAppear {
             // Fetch all assets when the view appears
