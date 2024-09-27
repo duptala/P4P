@@ -20,6 +20,12 @@ struct AssetDetailView: View {
 
     var body: some View {
         VStack {
+            // Display Detected Room without blinking effect
+           Text("Detected Room: \(detectedRoom)")
+               .font(.headline)
+               .foregroundColor(.blue)
+            
+            
             // Display asset image
             AsyncImage(url: URL(string: asset.imageUrl)) { image in
                 image.resizable()
@@ -28,11 +34,6 @@ struct AssetDetailView: View {
             } placeholder: {
                 ProgressView()
             }
-            
-            // Display Detected Room without blinking effect
-           Text("Detected Room: \(detectedRoom)")
-               .font(.caption)
-               .foregroundColor(.blue)
             
             // Display asset details
             Text(asset.name)
