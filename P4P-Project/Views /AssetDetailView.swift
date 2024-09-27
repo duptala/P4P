@@ -12,6 +12,7 @@ struct AssetDetailView: View {
     let asset: Asset
     var name: String // Current user's name
     var upi: String // Current user's UPI
+    var detectedRoom: String // BLE-detected room
     var updateAsset: (Asset) -> Void // Function to update specific asset in HomeView
     @State private var isMoving = false // Tracks if the item is being moved
     @State private var showAlert = false // State to show alert
@@ -19,6 +20,12 @@ struct AssetDetailView: View {
 
     var body: some View {
         VStack {
+            // Display Detected Room without blinking effect
+           Text("Detected Room: \(detectedRoom)")
+               .font(.headline)
+               .foregroundColor(.blue)
+            
+            
             // Display asset image
             AsyncImage(url: URL(string: asset.imageUrl)) { image in
                 image.resizable()
@@ -74,8 +81,8 @@ struct AssetDetailView: View {
     
     // Finish moving: update asset in the database, refresh, and show alert
     func finishMoving() {
-        // Example: Update the asset’s new room (using BLE)
-        let newRoom = detectNewRoom() // Replace with BLE detection logic
+        
+        let newRoom = detectedRoom // Updated with BLE detection logic
         
         // Update Firestore
         let db = Firestore.firestore()
@@ -97,8 +104,8 @@ struct AssetDetailView: View {
                     level: asset.level,
                     room: newRoom, // Update room
                     lastUpdatedAt: Date(), // Update time
-                    lastUpdatedByName: name,
-                    lastUpdatedByUPI: upi,
+                    lastUpdatedByName: name, // Update name
+                    lastUpdatedByUPI: upi, // Update upi
                     imageUrl: asset.imageUrl
                 )
                 // Call updateAsset to update the specific asset in HomeView
@@ -110,11 +117,6 @@ struct AssetDetailView: View {
             showAlert = true // Show the alert after the operation
             isMoving = false // Reset the moving state
         }
-    }
-
-    // Dummy BLE detection function for room change
-    func detectNewRoom() -> String {
-        return "New Room Detected via BLE"
     }
 
     // Function to format the date

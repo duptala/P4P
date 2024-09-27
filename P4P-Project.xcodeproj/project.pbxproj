@@ -30,6 +30,7 @@
 		FA1173882CA5A55300F6B3D5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FA1173872CA5A55300F6B3D5 /* FirebaseFirestore */; };
 		FA11738A2CA5A56900F6B3D5 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FA1173892CA5A56900F6B3D5 /* FirebaseFirestoreCombine-Community */; };
 		FA11738C2CA5ACDF00F6B3D5 /* AssetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA11738B2CA5ACDF00F6B3D5 /* AssetDetailView.swift */; };
+		FA11738F2CA5BDAC00F6B3D5 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA11738E2CA5BDAC00F6B3D5 /* BLEManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		FA1173772CA59E7A00F6B3D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA1173792CA59EA900F6B3D5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FA11738B2CA5ACDF00F6B3D5 /* AssetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDetailView.swift; sourceTree = "<group>"; };
+		FA11738E2CA5BDAC00F6B3D5 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		FA11733F2CA56F7A00F6B3D5 /* P4P-Project */ = {
 			isa = PBXGroup;
 			children = (
+				FA11738D2CA5BDA100F6B3D5 /* Bluetooth */,
 				FA1173762CA5988100F6B3D5 /* Info.plist */,
 				FA1173772CA59E7A00F6B3D5 /* GoogleService-Info.plist */,
 				FA1173712CA57F1500F6B3D5 /* Interfaces */,
@@ -191,6 +194,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA11738D2CA5BDA100F6B3D5 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				FA11738E2CA5BDAC00F6B3D5 /* BLEManager.swift */,
+			);
+			path = Bluetooth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,6 +357,7 @@
 				FA1173412CA56F7A00F6B3D5 /* P4P_ProjectApp.swift in Sources */,
 				FA1173702CA57EFC00F6B3D5 /* HomeView.swift in Sources */,
 				FA11738C2CA5ACDF00F6B3D5 /* AssetDetailView.swift in Sources */,
+				FA11738F2CA5BDAC00F6B3D5 /* BLEManager.swift in Sources */,
 				FA1173752CA57F4000F6B3D5 /* AssetCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

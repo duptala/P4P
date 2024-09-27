@@ -17,6 +17,11 @@ struct HomeView: View {
     @State private var scannedCode = "" // State to store the scanned QR code
     @State private var assets: [Asset] = [] // Array to store retrieved assets
     @State private var selectedAsset: Asset? // Stores the asset selected after scanning
+    
+    @StateObject private var bleManager = BLEManager() // Initialize BLEManager
+    
+    // State variable to control the color of the room detection text
+    @State private var isBlinking = false
         
     // Firestore instance
     let db = Firestore.firestore()
@@ -46,6 +51,14 @@ struct HomeView: View {
                 }
             }
             
+            // Room detected with blinking effect
+            Text("Room detected: \(bleManager.detectedRoom)")
+                .font(.caption)
+                .foregroundColor(isBlinking ? .gray : .blue) // Blink effect
+                .animation(.easeInOut(duration: 0.8).repeatForever(), value: isBlinking) // Blinking animation
+            
+            Spacer()
+            
             // User details
             Text("Logged in as: \(name) | \(upi)")
                 .padding()
@@ -74,11 +87,14 @@ struct HomeView: View {
         }
         .sheet(item: $selectedAsset) { asset in
             // When an asset is selected after scanning, navigate to the AssetDetailView
-            AssetDetailView(asset: asset, name: name, upi: upi, updateAsset: updateAsset)
+            AssetDetailView(asset: asset, name: name, upi: upi, detectedRoom: bleManager.detectedRoom, updateAsset: updateAsset)
         }
         .onAppear {
             // Fetch all assets when the view appears
             fetchAllAssets()
+            
+            // Start the blinking animation on appear
+            startBlinking()
         }
         .onChange(of: scannedCode) { newCode in
             if !newCode.isEmpty {
@@ -93,6 +109,14 @@ struct HomeView: View {
             }
         }
     }
+    
+    // Function to control the blinking effect
+        func startBlinking() {
+            // A timer that will repeat the blinking effect
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                isBlinking.toggle()
+            }
+        }
     
     // Function to update the specific asset in the assets array
     func updateAsset(_ updatedAsset: Asset) {
