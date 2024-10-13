@@ -14,7 +14,7 @@ This application tracks asset locations by scanning BLE beacons placed at variou
 
 ## Requirements
 - **iOS**: Version 16.0 or later
-- **Xcode**: Version 12 or later
+- **Xcode**: Version 14 or later
 - **CoreBluetooth Framework**: Used for BLE scanning and peripheral management.
 - **CodeScanner Library**: For QR code scanning functionality. Install using Swift Package Manager.
 
