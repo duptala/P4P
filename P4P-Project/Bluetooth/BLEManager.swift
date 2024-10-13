@@ -152,21 +152,21 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     // Map the two strongest beacons to specific rooms, including the new beacon
     private func determineRoom(firstBeacon: String, secondBeacon: String) -> String {
         switch (firstBeacon, secondBeacon) {
-        case ("ESP32-BEACON-1", "ESP32-BEACON-2"), ("ESP32-BEACON-2", "ESP32-BEACON-1"):
+        case ("1", "2"), ("2", "1"):
             return "Room 405-712"
-        case ("ESP32-BEACON-2", "ESP32-BEACON-3"), ("ESP32-BEACON-3", "ESP32-BEACON-2"):
+        case ("2", "3"), ("3", "2"):
             return "Room 405-722"
-        case ("ESP32-BEACON-2", "ESP32_BEACON"), ("ESP32_BEACON", "ESP32-BEACON-2"):
+        case ("2", "4"), ("4", "2"):
             return "Room 405-722"
-        case ("ESP32-BEACON-3", "ESP32_BEACON"), ("ESP32_BEACON", "ESP32-BEACON-3"):
+        case ("3", "4"), ("4", "3"):
             return "Room 405-722"
-        case ("ESP32-BEACON-4", "ESP32_BEACON"), ("ESP32_BEACON", "ESP32-BEACON-4"):
+        case ("4", "5"), ("5", "4"):
             return "Room 405-722"
-        case ("ESP32-BEACON-3", "ESP32-BEACON-4"), ("ESP32-BEACON-4", "ESP32-BEACON-3"):
+        case ("3", "5"), ("5", "3"):
             return "Room 405-722"
-        case ("ESP32-BEACON-2", "ESP32-BEACON-4"), ("ESP32-BEACON-4", "ESP32-BEACON-2"):
+        case ("2", "5"), ("5", "2"):
             return "Room 405-722"
-        case ("ESP32-BEACON-4", "ESP32-BEACON-5"), ("ESP32-BEACON-5", "ESP32-BEACON-4"):
+        case ("5", "6"), ("6", "5"):
             return "Room 405-736"
         default:
             return "Undetermined room"
