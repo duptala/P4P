@@ -49,13 +49,7 @@ You can replicate this schema if you set up your own Firebase project for testin
 1. Clone this repository to your local machine:
    ```bash
    git clone https://github.com/duptala/P4P.git
- 2. Open the project in Xcode:
-  `
-   cd P4P
-  `
-  `
-   open P4P.xcodeproj
-    `
+ 2. Open the project in Xcode: `cd P4P` `open P4P.xcodeproj`
    
 4. Install Dependencies
 5. Configure Firebase
@@ -84,5 +78,5 @@ On the asset detail page, press "Move" to begin moving the asset. The BLE-detect
 For any questions, improvements, or bug reports, please reach out to us:
 
 - Devesh: [ddup656@aucklanduni.ac.nz](mailto:ddup656@aucklanduni.ac.nz)  
-- Young Kim: [ykim583@aucklanduni.ac.nz](mailto:ykim583@aucklanduni.ac.nz)
+- Youngmin Kim: [ykim583@aucklanduni.ac.nz](mailto:ykim583@aucklanduni.ac.nz)
 
