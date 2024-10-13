@@ -50,11 +50,13 @@ You can replicate this schema if you set up your own Firebase project for testin
    ```bash
    git clone https://github.com/your-repo-url.git
  2. Open the project in Xcode:
-    ```bash
+    `
    cd path-to-your-project
    open YourProjectName.xcodeproj
-3. Install Dependencies
-4. Configure Firebase
+    `
+   
+4. Install Dependencies
+5. Configure Firebase
 
 ## Usage
 ### Start BLE Scanning
