@@ -48,11 +48,13 @@ You can replicate this schema if you set up your own Firebase project for testin
 ## Setup and Installation
 1. Clone this repository to your local machine:
    ```bash
-   git clone https://github.com/your-repo-url.git
+   git clone https://github.com/duptala/P4P.git
  2. Open the project in Xcode:
-    `
-   cd path-to-your-project
-   open YourProjectName.xcodeproj
+  `
+   cd P4P
+  `
+  `
+   open P4P.xcodeproj
     `
    
 4. Install Dependencies
